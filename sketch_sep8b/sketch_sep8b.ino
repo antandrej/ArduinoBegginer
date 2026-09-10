@@ -17,37 +17,60 @@ void loop() {
   while (Serial.available() == 0) {
     
   }
+
   myColor = Serial.readString();
-  if (myColor == "red" || myColor == "Red" || myColor == "RED") {
+  myColor.trim();
+  myColor.toLowerCase();
+
+  if (myColor == "red") {
     digitalWrite(redPin, HIGH);
     digitalWrite(greenPin, LOW);
     digitalWrite(bluePin, LOW);
   }
-  if (myColor == "green" || myColor == "Green" || myColor == "GREEN") {
+  else if (myColor == "green") {
     digitalWrite(redPin, LOW);
     digitalWrite(greenPin, HIGH);
     digitalWrite(bluePin, LOW);
   }
-  if (myColor == "blue" || myColor == "Blue" || myColor == "BLUE") {
+  else if (myColor == "blue") {
     digitalWrite(redPin, LOW);
     digitalWrite(greenPin, LOW);
     digitalWrite(bluePin, HIGH);
   }
-  if (myColor == "off" || myColor == "OFF" || myColor == "Off") {
+  else if (myColor == "off") {
     digitalWrite(redPin, LOW);
     digitalWrite(greenPin, LOW);
     digitalWrite(bluePin, LOW);
   }
 
   ///
-  if (myColor == "aqua" || myColor == "Aqua" || myColor == "AQUA") {
+  else if (myColor == "aqua") {
+    int greenVal = 255;
+    int blueVal = 80;
     digitalWrite(redPin, LOW);
-    analogWrite(greenPin, 255);
-    analogWrite(bluePin, 80);
-  }
-  if (myColor == "pink" || myColor == "Pink" || myColor == "PINK") {
-    analogWrite(redPin, 255);
-    analogWrite(greenPin, 130);
-    analogWrite(bluePin, 180);
+    analogWrite(greenPin, greenVal);
+    analogWrite(bluePin, blueVal);
+    while (Serial.available() == 0) {
+      for (int j = 0; j < 5; j++) {
+        if(Serial.available() > 0 )
+          break;
+        greenVal = greenVal - 40;
+        blueVal = blueVal + 32;
+        analogWrite(greenPin, greenVal);
+        analogWrite(bluePin, blueVal);
+        delay(300);
+        Serial.println(greenVal);
+      }
+      for (int j = 0; j < 5; j++) {
+        if(Serial.available() > 0 )
+          break;
+        greenVal = greenVal + 40;
+        blueVal = blueVal - 32;
+        analogWrite(greenPin, greenVal);
+        analogWrite(bluePin, blueVal);
+        delay(500);
+        Serial.println(greenVal);
+      }
+    }
   }
 }
