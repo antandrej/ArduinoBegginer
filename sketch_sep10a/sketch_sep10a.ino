@@ -1,21 +1,19 @@
-int myNumb;
+int potVal;
 int buzzPin = 8;
+int potPin = A3;
 
-String msg = "Number? ";
 void setup() {
-  Serial.begin(9600);
+  //Serial.begin(9600);
   pinMode(buzzPin, OUTPUT);
+  pinMode(potPin, INPUT);
 }
 
-void loop() {
-  Serial.println(msg);
-  while (Serial.available() == 0) {
-    
-  }
-  myNumb = Serial.parseInt();
-  if (myNumb > 10) {
+void loop() { 
+  potVal = analogRead(potPin);
+
+  while (potVal > 1000) {
     digitalWrite(buzzPin, HIGH);
-    delay(200);
-    digitalWrite(buzzPin, LOW);
+    potVal = analogRead(potPin);
   }
+  digitalWrite(buzzPin, LOW);
 }
