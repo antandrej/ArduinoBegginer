@@ -26,6 +26,7 @@ void loop() {
       currentVal = currentVal + step;
     }
     Serial.println(currentVal);
+    delay(dt);
   }
 
   if (btnDown == 1 && btnUp == 0) {
@@ -34,7 +35,6 @@ void loop() {
       currentVal = currentVal - step;
     }
     Serial.println(currentVal);
+    delay(dt);
   }
-
-  delay(dt);
 }
