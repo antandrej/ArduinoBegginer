@@ -28,13 +28,13 @@ void loop() {
     digitalWrite(dir1Pin, LOW);
     digitalWrite(dir1Pin, HIGH);
     speedVal = -255./512.*yVal+255.;
-    analogWrite(speedPin, speedVal)
+    analogWrite(speedPin, speedVal);
   }
 
   else if (yVal >= 512) {
     digitalWrite(dir1Pin, HIGH);
     digitalWrite(dir1Pin, LOW);
     speedVal = (255./512.)*yVal-255.;
-    analogWrite(speedPin, speedVal)
+    analogWrite(speedPin, speedVal);
   }
 }
