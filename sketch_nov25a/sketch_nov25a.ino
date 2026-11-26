@@ -2,8 +2,8 @@ int clockPin = 9;
 int latchPin = 11;
 int dataPin = 12;
 
-byte LEDs1=0x00;
-byte LEDs2=0x00;
+byte LEDs1=0xAA;
+byte LEDs2=0x55;
 
 int dt = 450;
 void setup() {
