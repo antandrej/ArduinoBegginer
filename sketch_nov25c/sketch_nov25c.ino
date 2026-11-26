@@ -2,9 +2,10 @@ int clockPin = 9;
 int latchPin = 11;
 int dataPin = 12;
 
-byte LEDs = 0b10000000;
+byte LEDs = 0b10000001;
+//byte LEDs = 0b10000000;
 
-int dt = 450;
+int dt = 400;
 void setup() {
   pinMode(latchPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
@@ -17,6 +18,6 @@ void loop() {
   shiftOut(dataPin, clockPin, LSBFIRST, LEDs);
   digitalWrite(latchPin, HIGH);
 
-  LEDs = LEDs / 2;
+  LEDs = LEDs/128+LEDs*2;
   delay(dt);
 }
